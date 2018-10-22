@@ -35,7 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="controller\employee.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Logic.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="model\employee.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Repository\IRepository.ts">
@@ -44,8 +50,9 @@
     <TypeScriptCompile Include="Repository\WorkersRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="routes\index.ts" />
-    <TypeScriptCompile Include="routes\user.ts" />
+    <TypeScriptCompile Include="routes\crmRoutes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
@@ -53,8 +60,13 @@
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
+    <TypeScriptCompile Include="server.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="model\" />
+    <Folder Include="controller\" />
     <Folder Include="Repository\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
