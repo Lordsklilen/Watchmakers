@@ -14,12 +14,12 @@ export class Routes {
 
         app.route('/employee').get(this.employeeController.getEmployees);
 
-        app.route('/employee/:employeeId').get(this.employeeController.getEmployee);
+        app.route('/employee/employee').get(this.employeeController.getEmployee);
 
-        app.route('/employee/:employeeId').put(this.employeeController.updateEmployee);
+        app.route('/employee/update').put(this.employeeController.updateEmployee);
 
-        app.route('/employee/:employeeId').delete(this.employeeController.deleteEmployee);
+        app.route('/employee/delete').delete(this.employeeController.deleteEmployee);
 
-        app.route('/employee').post(this.employeeController.addNewEmployee);
+        app.route('/employee/add').post(this.employeeController.addNewEmployee);
     }
 }
