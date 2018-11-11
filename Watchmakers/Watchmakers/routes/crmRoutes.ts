@@ -1,11 +1,25 @@
-﻿import { Request, Response } from "express";
-
+﻿import { Request, Response,Router } from "express";
 import { EmployeeController } from "../controller/employee";
-
+const jwt = require('express-jwt');
+const auth = require('../auth');
 export class Routes {
     public employeeController: EmployeeController = new EmployeeController();
 
     public routes(app): void {
+
+        app.route('/current').get(auth.required, (req, res, next) => {
+            const { payload: { id } } = req;
+            return Employees.findById(id)
+                .then((user) => {
+                    if (!user) {
+                        return res.sendStatus(400);
+                    }
+                    return res.json({ user: user.toAuthJSON() });
+                });
+        });
+
+
+
         app.route('/').get((req: Request, res: Response) => {
             res.status(200).send({
                 message: 'GET request succesfull'

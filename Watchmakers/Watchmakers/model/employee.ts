@@ -1,9 +1,0 @@
-﻿import * as mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
-
-export const EmployeeSchema = new Schema({
-    name: String,
-    surname: String,
-    position: String
-})

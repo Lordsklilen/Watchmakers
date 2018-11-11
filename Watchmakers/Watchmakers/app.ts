@@ -1,5 +1,4 @@
 ﻿import server from "./server";
-
 const PORT = 1337;
 
 server.listen(PORT, () => {

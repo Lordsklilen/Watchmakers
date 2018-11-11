@@ -1,10 +1,11 @@
 ﻿import * as mongoose from 'mongoose';
-import { EmployeeSchema } from '../model/employee';
+import { EmployeeSchema } from "../model/EmployeeSchema";
 import { Request, Response } from 'express';
 
 const Employee = mongoose.model('Employee', EmployeeSchema);
 
 export class EmployeeController {
+    
     public getEmployees(req: Request, res: Response) {
         Employee.find({}, (err, employee) => {
             if (err) {
@@ -24,14 +25,19 @@ export class EmployeeController {
     }
 
     public addNewEmployee(req: Request, res: Response) {
-        let newEmployee = new Employee(req.body);
+        const finalUser = new Employees(req.body);
+        finalUser.setPassword(finalUser.password);
+        console.log("user:" + JSON.stringify(finalUser));
+        return finalUser.save()
+            .then(() => res.json({ user: finalUser.toAuthJSON() }));
+        //let newEmployee = new Employee(req.body);
+        //newEmployee.save((err, employee) => {
+        //    if (err) {
+        //        res.send(err);
+        //    }
 
-        newEmployee.save((err, employee) => {
-            if (err) {
-                res.send(err);
-            }
-            res.json(employee);
-        });
+        //    res.json(employee);
+        //});
     }
 
     public updateEmployee(req: Request, res: Response) {

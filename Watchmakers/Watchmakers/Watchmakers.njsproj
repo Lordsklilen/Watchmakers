@@ -35,19 +35,25 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="controller\employee.ts">
+    <TypeScriptCompile Include="Auth.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="config\passport.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="controller\EmployeeController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Logic.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="model\employee.ts">
+    <TypeScriptCompile Include="model\EmployeeSchema.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Repository\IRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Repository\WorkersRepository.ts">
+    <TypeScriptCompile Include="Repository\EmployeesRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\crmRoutes.ts">
@@ -67,6 +73,7 @@
   <ItemGroup>
     <Folder Include="model\" />
     <Folder Include="controller\" />
+    <Folder Include="config\" />
     <Folder Include="Repository\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />

@@ -22,7 +22,6 @@ class EmployeeController {
     }
     addNewEmployee(req, res) {
         let newEmployee = new Employee(req.body);
-        console.log(newEmployee);
         newEmployee.save((err, employee) => {
             if (err) {
                 res.send(err);

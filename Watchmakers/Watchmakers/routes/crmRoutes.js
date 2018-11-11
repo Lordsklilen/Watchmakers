@@ -1,11 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const employee_1 = require("../controller/employee");
+const jwt = require('express-jwt');
+const auth = require('../auth');
 class Routes {
     constructor() {
         this.employeeController = new employee_1.EmployeeController();
     }
     routes(app) {
+        app.route('/current').get(auth.required, (req, res, next) => {
+            const { payload: { id } } = req;
+            return Employees.findById(id)
+                .then((user) => {
+                if (!user) {
+                    return res.sendStatus(400);
+                }
+                return res.json({ user: user.toAuthJSON() });
+            });
+        });
         app.route('/').get((req, res) => {
             res.status(200).send({
                 message: 'GET request succesfull'

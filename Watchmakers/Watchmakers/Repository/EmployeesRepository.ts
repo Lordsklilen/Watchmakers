@@ -1,4 +1,4 @@
-﻿import { IRepository} from "./IRepository";
+﻿import { IRepository } from "./IRepository";
 
 export class WorkersRepository implements IRepository {
     getById(id: number) {
