@@ -25,20 +25,12 @@ export class EmployeeController {
     }
 
     public addNewEmployee(req: Request, res: Response) {
-        const finalUser = new Employees(req.body);
-        finalUser.setPassword(finalUser.password);
-        console.log("user:" + JSON.stringify(finalUser));
-        return finalUser.save()
-            .then(() => res.json({ user: finalUser.toAuthJSON() }));
-        //let newEmployee = new Employee(req.body);
-        //newEmployee.save((err, employee) => {
-        //    if (err) {
-        //        res.send(err);
-        //    }
-
-        //    res.json(employee);
-        //});
-    }
+        let newEmployee = new Employee(req.body);
+        console.log(JSON.stringify(req.body["password"]))
+        newEmployee.setPassword(req.body["password"]);
+        newEmployee.save()
+            .then(() => res.json(newEmployee.toAuthJSON()));
+       }
 
     public updateEmployee(req: Request, res: Response) {
         Employee.findOneAndUpdate({ _id: req.params.employeeId }, req.body, { new: true }, (err, employee) => {

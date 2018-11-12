@@ -1,15 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const employee_1 = require("../controller/employee");
+const EmployeeController_1 = require("../controller/EmployeeController");
 const jwt = require('express-jwt');
 const auth = require('../auth');
 class Routes {
     constructor() {
-        this.employeeController = new employee_1.EmployeeController();
+        this.employeeController = new EmployeeController_1.EmployeeController();
     }
     routes(app) {
-        app.route('/current').get(auth.required, (req, res, next) => {
-            return "logged";
+        app.route('/auth').get(auth.required, (req, res, next) => {
+            res.status(200).send({
+                message: 'GET request with auth succesfull'
+            });
         });
         app.route('/').get((req, res) => {
             res.status(200).send({

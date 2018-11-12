@@ -1,5 +1,5 @@
 ﻿import { Request, Response,Router } from "express";
-import { EmployeeController } from "../controller/employee";
+import { EmployeeController } from "../controller/EmployeeController";
 const jwt = require('express-jwt');
 const auth = require('../auth');
 export class Routes {
@@ -7,8 +7,10 @@ export class Routes {
 
     public routes(app): void {
 
-        app.route('/current').get(auth.required, (req, res, next) => {
-            return "logged";
+        app.route('/auth').get(auth.required, (req, res, next) => {
+            res.status(200).send({
+                message: 'GET request with auth succesfull'
+            });
         });
 
 

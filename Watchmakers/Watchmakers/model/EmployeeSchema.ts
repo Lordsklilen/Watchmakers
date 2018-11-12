@@ -4,10 +4,8 @@ const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
 export const EmployeeSchema = new Schema({
-    id: Number,
     login: String,
     position: String,
-    password: String,
     hash: String,
     salt: String,
 })
@@ -17,6 +15,7 @@ EmployeeSchema.methods.setPassword = function (password) {
 };
 
 EmployeeSchema.methods.validatePassword = function (password) {
+    console.log("validate sdafasdfa:\n\n\n");
     const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
     return this.hash === hash;
 };
