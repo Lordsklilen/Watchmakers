@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
 export const EmployeeSchema = new Schema({
-    name: String,
-    surname: String,
+    id: Number,
+    login: String,
     position: String,
     password: String,
     hash: String,
@@ -27,7 +27,7 @@ EmployeeSchema.methods.generateJWT = function () {
     expirationDate.setDate(today.getDate() + 60);
 
     return jwt.sign({
-        email: this.email,
+        login: this.login,
         id: this._id,
         exp: expirationDate.getTime() / 1000,
     }, 'secret');
@@ -36,7 +36,7 @@ EmployeeSchema.methods.generateJWT = function () {
 EmployeeSchema.methods.toAuthJSON = function () {
     return {
         _id: this._id,
-        email: this.email,
+        login: this.login,
         token: this.generateJWT(),
     };
 };

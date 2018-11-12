@@ -9,14 +9,7 @@ class Routes {
     }
     routes(app) {
         app.route('/current').get(auth.required, (req, res, next) => {
-            const { payload: { id } } = req;
-            return Employees.findById(id)
-                .then((user) => {
-                if (!user) {
-                    return res.sendStatus(400);
-                }
-                return res.json({ user: user.toAuthJSON() });
-            });
+            return "logged";
         });
         app.route('/').get((req, res) => {
             res.status(200).send({
