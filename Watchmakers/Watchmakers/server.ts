@@ -11,6 +11,7 @@ class Server {
 
     constructor() {
         this.app = express();
+        
         this.config();
         this.routePrv.routes(this.app)
         this.mongoSetup();
@@ -19,6 +20,7 @@ class Server {
     private config(): void {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
+        this.app.use('/', express.static('html'));
     }
 
     private mongoSetup(): void {
