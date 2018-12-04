@@ -25,13 +25,13 @@ export class Routes {
         app.route('/employee/add').post(this.employeeController.addNewEmployee);
 
 
-        ////pages utils
+        //pages routes
 
         app.route('/').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/index.html'));
         });
         app.route('/Item/:itemname').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/singleItem.html'));
+            res.sendFile(path.resolve(__dirname + '/../../views/item.html'));
         });
 
         // loading css and js/jquery files
