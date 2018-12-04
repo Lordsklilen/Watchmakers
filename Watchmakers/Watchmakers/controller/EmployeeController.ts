@@ -8,19 +8,24 @@ export class EmployeeController {
     
     public getEmployees(req: Request, res: Response) {
         Employee.find({}, (err, employee) => {
+            let safeEmployee = [];
+            employee.forEach(element => {
+                safeEmployee.push(element.toAuthJSON())
+            });
             if (err) {
                 res.send(err);
             }
-            res.json(employee);
+            res.json(safeEmployee);
         });
     }
 
     public getEmployee(req: Request, res: Response) {
         Employee.findById(req.params.employeeId, (err, employee) => {
+            console.log("id: " + req.params.employeeId);
             if (err) {
                 res.send(err);
             }
-            res.json(employee);
+            res.json(employee.toAuthJSON());
         });
     }
 
@@ -37,7 +42,7 @@ export class EmployeeController {
             if (err) {
                 res.send(err);
             }
-            res.json(employee);
+            res.json(employee.toAuthJSON());
         });
     }
 
