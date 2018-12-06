@@ -21,14 +21,27 @@ export class EmployeeController {
 
     public getEmployee(req: Request, res: Response) {
         Employee.findById(req.params.employeeId, (err, employee) => {
-            console.log("id: " + req.params.employeeId);
             if (err) {
                 res.send(err);
             }
             res.json(employee.toAuthJSON());
         });
     }
-
+    public LogInEmployee(req: Request, res: Response) {
+        Employee.find({ login: req.body.Login}, (err, employee) => {       
+            if (err) {
+                res.send(err);
+            }
+            let emp = employee[0];
+            if(emp.validatePassword(req.body.Password)){
+                console.log("logged");
+                res.json(employee[0].toAuthJSON());
+            }
+            else{
+                console.log("sth goes wrong");
+            }
+        });
+    }
     public addNewEmployee(req: Request, res: Response) {
         let newEmployee = new Employee(req.body);
         console.log(JSON.stringify(req.body["password"]))

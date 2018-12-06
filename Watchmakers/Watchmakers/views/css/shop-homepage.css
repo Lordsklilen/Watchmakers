@@ -13,3 +13,23 @@ body {
     padding-top: 56px;
   }
 }
+.pass_show{
+  position: relative;
+} 
+.pass_show .ptxt { 
+ 
+  position: absolute; 
+  top: 50%; 
+  z-index: 1; 
+  color: #f36c01; 
+  margin-top: -10px; 
+  cursor: pointer; 
+  transition: .3s ease all; 
+} 
+.loginForm{
+  margin: 0 auto;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 200px;
+}
+.pass_show .ptxt:hover{color: #333333;} 

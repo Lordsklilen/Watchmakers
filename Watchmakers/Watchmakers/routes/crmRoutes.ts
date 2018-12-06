@@ -23,12 +23,16 @@ export class Routes {
         app.route('/employee/delete/:employeeId').delete(this.employeeController.deleteEmployee);
 
         app.route('/employee/add').post(this.employeeController.addNewEmployee);
-
+        
+        app.route('/loginCheck').get(this.employeeController.LogInEmployee);
 
         //pages routes
 
         app.route('/').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/index.html'));
+        });
+        app.route('/Login').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/Login.html'));
         });
         app.route('/Item/:itemname').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/item.html'));
@@ -40,6 +44,9 @@ export class Routes {
         });
         app.route('*/css/shop-homepage.css').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/css/shop-homepage.css'));
+        });
+        app.route('*/js/LoginScripts.js').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/js/LoginScripts.js'));
         });
         app.route('*/vendor/jquery/jquery.min.js').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/vendor/jquery/jquery.min.js'));
