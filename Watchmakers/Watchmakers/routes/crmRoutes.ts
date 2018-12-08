@@ -1,12 +1,18 @@
 ﻿import { Request, Response,Router } from "express";
 import { EmployeeController } from "../controller/EmployeeController";
 import { ProductController } from "../controller/ProductController";
+import { ServiceController } from "../controller/ServiceController";
+import { OrderController } from "../controller/OrderController";
+
 const jwt = require('express-jwt');
 const auth = require('../config/auth');
 const path = require('path');
+
 export class Routes {
     public employeeController: EmployeeController = new EmployeeController();
     public productController: ProductController = new ProductController();
+    public serviceController: ServiceController = new ServiceController();
+    public orderController: OrderController = new OrderController();
 
     public routes(app): void {
 
@@ -27,6 +33,14 @@ export class Routes {
         app.route('/product/update/:productId').put(this.productController.updateProduct);
         app.route('/product/delete/:productId').delete(this.productController.deleteProduct);
         app.route('/product/add').post(this.productController.addProduct);
+
+        app.route('/service').get(this.serviceController.getServices);
+        app.route('/service/:serviceId').get(this.serviceController.getService);
+        app.route('/service/add').post(this.serviceController.addService);
+
+        app.route('/order').get(this.orderController.getOrders);
+        app.route('/order/:orderId').get(this.orderController.getOrder);
+        app.route('/order/add').post(this.orderController.addOrder);
 
         //pages routes
 
