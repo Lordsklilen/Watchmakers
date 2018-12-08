@@ -10,7 +10,15 @@ export class EmployeeController {
         Employee.find({}, (err, employee) => {
             let safeEmployee = [];
             employee.forEach(element => {
-                safeEmployee.push(element.toAuthJSON())
+                safeEmployee.push(
+                    {
+                        "id": element.id,
+                        "login": element.login,
+                        "name": element.name,
+                        "surname": element.surname,
+                        "position": element.position
+                    }
+                )
             });
             if (err) {
                 res.send(err);
@@ -21,7 +29,6 @@ export class EmployeeController {
 
     public getEmployee(req: Request, res: Response) {
         Employee.findById(req.params.employeeId, (err, employee) => {
-            console.log("id: " + req.params.employeeId);
             if (err) {
                 res.send(err);
             }
@@ -31,7 +38,6 @@ export class EmployeeController {
 
     public addNewEmployee(req: Request, res: Response) {
         let newEmployee = new Employee(req.body);
-        console.log(JSON.stringify(req.body["password"]))
         newEmployee.setPassword(req.body["password"]);
         newEmployee.save()
             .then(() => res.json(newEmployee.toAuthJSON()));

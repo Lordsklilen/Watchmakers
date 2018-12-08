@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
 export const EmployeeSchema = new Schema({
+    name: String,
+    surname: String,
     login: String,
     position: String,
     hash: String,
