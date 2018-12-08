@@ -3,7 +3,7 @@ import { EmployeeController } from "../controller/EmployeeController";
 import { ProductController } from "../controller/ProductController";
 const jwt = require('express-jwt');
 const auth = require('../config/auth');
-var path = require('path');
+const path = require('path');
 export class Routes {
     public employeeController: EmployeeController = new EmployeeController();
     public productController: ProductController = new ProductController();
@@ -27,7 +27,6 @@ export class Routes {
         app.route('/product/update/:productId').put(this.productController.updateProduct);
         app.route('/product/delete/:productId').delete(this.productController.deleteProduct);
         app.route('/product/add').post(this.productController.addProduct);
-
 
         //pages routes
 

@@ -17,7 +17,6 @@ EmployeeSchema.methods.setPassword = function (password) {
 };
 
 EmployeeSchema.methods.validatePassword = function (password) {
-    console.log("validate password:\n");
     const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
     return this.hash === hash;
 };
