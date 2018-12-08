@@ -64,16 +64,15 @@
           <div class="card mt-4">
             <div class="card-body">
               <div class="col-sm-4 loginForm">
-                <form action="/loginCheck" method="get">
                 <label>Login</label>
                 <div class="form-group pass_show"> 
-                        <input type="text" value="michal123" class="form-control" placeholder="Login"> 
+                        <input type="text" value="md" class="form-control" placeholder="Login" id="LoginField"> 
                     </div> 
                    <label>Password</label>
                     <div class="form-group pass_show"> 
-                        <input type="password" value="faisal.khan@123" class="form-control" placeholder="Password"> 
+                        <input type="password" value="m" class="form-control" placeholder="Password" id ="PasswordField"> 
                     </div> 
-                    <input class="btn list-group-item" type="submit" value="Log in">
+                    <input class="btn list-group-item" type="submit" value="Log in" onclick="sendData()"> 
                   </form>
             </div>  
             </div>

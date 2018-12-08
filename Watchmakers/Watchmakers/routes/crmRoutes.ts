@@ -28,7 +28,7 @@ export class Routes {
         app.route('/employee/delete/:employeeId').delete(this.employeeController.deleteEmployee);
         app.route('/employee/add').post(this.employeeController.addNewEmployee);
         
-        app.route('/loginCheck').get(this.employeeController.LogInEmployee);
+        app.route('/loginCheck').post(this.employeeController.LogInEmployee);
 
         app.route('/product').get(this.productController.getProducts);
         app.route('/product/:productId').get(this.productController.getProduct);

@@ -38,6 +38,9 @@ EmployeeSchema.methods.toAuthJSON = function () {
         _id: this._id,
         login: this.login,
         token: this.generateJWT(),
+        name: this.name,
+        surname: this.surname,
+        position: this.position
     };
 };
 
