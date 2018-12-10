@@ -6,7 +6,13 @@ const getTokenFromHeaders = (req) => {
     }
     return null;
 };
-
+const getTokenFromSession = (req) => {
+    const { headers: { authorization } } = req;
+    if (authorization && authorization.split(' ')[0] === 'Token') {
+        return authorization.split(' ')[1];
+    }
+    return null;
+};
 const auth = {
     required: jwt({
         secret: 'secret',
