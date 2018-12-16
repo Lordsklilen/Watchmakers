@@ -7,6 +7,7 @@ import { OrderController } from "../controller/OrderController";
 const jwt = require('express-jwt');
 const auth = require('../config/auth');
 const path = require('path');
+const multer = require('multer');
 
 export class Routes {
     public employeeController: EmployeeController = new EmployeeController();
@@ -35,6 +36,7 @@ export class Routes {
         app.route('/product/update/:productId').put(this.productController.updateProduct);
         app.route('/product/delete/:productId').delete(this.productController.deleteProduct);
         app.route('/product/add').post(this.productController.addProduct);
+        app.route('/product/add/photo').post(this.productController.uploadPhoto);
 
         app.route('/service').get(this.serviceController.getServices);
         app.route('/service/:serviceId').get(this.serviceController.getService);
