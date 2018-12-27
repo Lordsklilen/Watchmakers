@@ -1,15 +1,8 @@
 ﻿const jwt = require('express-jwt');
-const getTokenFromHeaders = (req) => {
-    const { headers: { authorization } } = req;
-    if (authorization && authorization.split(' ')[0] === 'Token') {
-        return authorization.split(' ')[1];
-    }
-    return null;
-};
 const getTokenFromSession = (req) => {
-    const { headers: { authorization } } = req;
-    if (authorization && authorization.split(' ')[0] === 'Token') {
-        return authorization.split(' ')[1];
+    var authorization = req.session.Authorization
+    if (authorization) {
+        return authorization;
     }
     return null;
 };
@@ -17,12 +10,12 @@ const auth = {
     required: jwt({
         secret: 'secret',
         userProperty: 'payload',
-        getToken: getTokenFromHeaders,
+        getToken: getTokenFromSession,
     }),
     optional: jwt({
         secret: 'secret',
         userProperty: 'payload',
-        getToken: getTokenFromHeaders,
+        getToken: getTokenFromSession,
         credentialsRequired: false,
     }),
 };

@@ -34,9 +34,9 @@ export class ProductController {
 
     public uploadPhoto(req: Request, res: Response) {
         upload(req, res, (req, res) => {
-            if(err){
-                return res.end("Something went wrong!");
-            }
+            // if(err){
+            //     return res.end("Something went wrong!");
+            // }
             return res.end("File uploaded succesfully!");
         })
     }

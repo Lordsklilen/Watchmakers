@@ -34,24 +34,33 @@ export class EmployeeController {
                 res.send(err);
             }
             res.json(employee.toAuthJSON());
+            res.redirect("/Admin");
         });
     }
     public LogInEmployee(req: Request, res: Response) {   
-        console.log(JSON.stringify(req.body));  
-        console.log(JSON.stringify(req.body));   
         Employee.find({ login: req.body.Login}, (err, employee) => {    
             if (err) {
                 res.send(err);
             }
-            let emp = employee[0]; 
-            console.log("password:" + req.body.Password);   
+            let emp = employee[0];   
             if(emp.validatePassword(req.body.Password)){
+                req["session"].Authorization = employee[0].toAuthJSON()["token"];
                 console.log("logged");
-                res.json(employee[0].toAuthJSON());
+                res.redirect('/Admin');
             }
             else{
                 console.log("sth goes wrong");
             }
+        });
+    }
+
+    public LogOutEmployee(req: Request, res: Response) {   
+        Employee.find({ login: req.body.Login}, (err, employee) => {    
+            if (err) {
+                res.send(err);
+            }
+            req["session"].Authorization = "";
+            res.redirect('/');
         });
     }
     public addNewEmployee(req: Request, res: Response) {

@@ -30,6 +30,7 @@ export class Routes {
         app.route('/employee/add').post(this.employeeController.addNewEmployee);
         
         app.route('/loginCheck').post(this.employeeController.LogInEmployee);
+        app.route('/logOut').post(this.employeeController.LogOutEmployee);
 
         app.route('/product').get(this.productController.getProducts);
         app.route('/product/:productId').get(this.productController.getProduct);
@@ -46,6 +47,8 @@ export class Routes {
         app.route('/order/:orderId').get(this.orderController.getOrder);
         app.route('/order/add').post(this.orderController.addOrder);
 
+
+        
         //pages routes
 
         app.route('/').get((req: Request, res: Response) => {
@@ -53,6 +56,9 @@ export class Routes {
         });
         app.route('/Login').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/Login.html'));
+        });
+        app.route('/Admin').get(auth.required,(req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/Admin.html'));
         });
         app.route('/Item/:itemname').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/item.html'));

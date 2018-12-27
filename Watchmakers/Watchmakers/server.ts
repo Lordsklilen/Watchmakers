@@ -1,8 +1,9 @@
 ﻿import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
-
-import { Routes } from "./routes/crmRoutes"
+var session = require('express-session');
+import * as cookieParser from "cookie-parser";
+import { Routes } from "./routes/crmRoutes";
 
 class Server {
     public app: express.Application;
@@ -21,6 +22,17 @@ class Server {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use('/', express.static('html'));
+        this.app.use(cookieParser());
+        this.app.use(session({
+            Authorization:"Nie dla psa! dla pana to",
+            key: 'user_sid',
+            secret: 'somerandonstuffs',
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                expires: 600000
+            }
+        }));
     }
 
     private mongoSetup(): void {
