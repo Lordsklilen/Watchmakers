@@ -1,13 +1,13 @@
 {
   "name": "watchmakers",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app"
   },
   "description": "Watchmakers",
   "author": {
-    "name": ""
+    "name": "Michał Dela, Damian Hałatek"
   },
   "main": "app.js",
   "dependencies": {

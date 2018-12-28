@@ -4,6 +4,7 @@ import * as mongoose from "mongoose";
 var session = require('express-session');
 import * as cookieParser from "cookie-parser";
 import { Routes } from "./routes/crmRoutes";
+const path = require('path');
 
 class Server {
     public app: express.Application;
@@ -22,6 +23,15 @@ class Server {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use('/', express.static('html'));
+        this.app.use((err, req, res, next) => {
+            console.log("cos");
+            if(err.name === 'UnauthorizedError') {
+                console.log("see");
+              res.status(err.status).send({message:"dsdf"});
+              return;
+            }
+         next();
+        });
         this.app.use(cookieParser());
         this.app.use(session({
             Authorization:"Nie dla psa! dla pana to",
@@ -33,6 +43,7 @@ class Server {
                 expires: 600000
             }
         }));
+        
     }
 
     private mongoSetup(): void {
