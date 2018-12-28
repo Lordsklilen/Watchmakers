@@ -7,7 +7,7 @@ import { OrderController } from "../controller/OrderController";
 const jwt = require('express-jwt');
 const auth = require('../config/auth');
 const path = require('path');
-const multer = require('multer');
+const upload = require('../config/upload');
 
 export class Routes {
     public employeeController: EmployeeController = new EmployeeController();
@@ -36,8 +36,7 @@ export class Routes {
         app.route('/product/:productId').get(this.productController.getProduct);
         app.route('/product/update/:productId').put(this.productController.updateProduct);
         app.route('/product/delete/:productId').delete(this.productController.deleteProduct);
-        app.route('/product/add').post(this.productController.addProduct);
-        app.route('/product/add/photo').post(this.productController.uploadPhoto);
+        app.route('/product/add').post(upload.single('photo'), this.productController.addProduct);
 
         app.route('/service').get(this.serviceController.getServices);
         app.route('/service/:serviceId').get(this.serviceController.getService);
@@ -63,6 +62,9 @@ export class Routes {
         app.route('/Item/:itemname').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/item.html'));
         });
+        app.route('/addproduct').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/addproduct.html'));
+        })
 
         // loading css and js/jquery files
         app.route('*/vendor/bootstrap/css/bootstrap.min.css').get((req: Request, res: Response) => {

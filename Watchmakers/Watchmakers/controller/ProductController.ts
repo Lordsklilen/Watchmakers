@@ -2,8 +2,6 @@ import * as mongoose from 'mongoose';
 import { ProductSchema } from "../model/ProductSchema";
 import { Request, Response } from 'express';
 
-var upload = require("../config/multer");
-
 const Product = mongoose.model('Product', ProductSchema);
 
 export class ProductController {
@@ -27,18 +25,13 @@ export class ProductController {
     }
 
     public addProduct(req: Request, res: Response) {
-        let newProduct = new Product(req.body);
+        let newProduct = new Product({
+            manufacturer: req.body["Manufacturer"],
+            model: req.body["Model"],
+            photo: req.file["filename"]
+        });
         newProduct.save()
             .then(() => res.json(newProduct));
-    }
-
-    public uploadPhoto(req: Request, res: Response) {
-        upload(req, res, (req, res) => {
-            // if(err){
-            //     return res.end("Something went wrong!");
-            // }
-            return res.end("File uploaded succesfully!");
-        })
     }
 
     public updateProduct(req: Request, res: Response) {
