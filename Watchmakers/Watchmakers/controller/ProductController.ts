@@ -25,6 +25,7 @@ export class ProductController {
     }
 
     public addProduct(req: Request, res: Response) {
+        console.log(req);
         let newProduct = new Product({
             manufacturer: req.body["Manufacturer"],
             model: req.body["Model"],

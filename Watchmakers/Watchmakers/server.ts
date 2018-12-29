@@ -24,9 +24,7 @@ class Server {
         this.app.use(bodyParser.json());
         this.app.use('/', express.static('html'));
         this.app.use((err, req, res, next) => {
-            console.log("cos");
             if(err.name === 'UnauthorizedError') {
-                console.log("see");
               res.status(err.status).send({message:"dsdf"});
               return;
             }
