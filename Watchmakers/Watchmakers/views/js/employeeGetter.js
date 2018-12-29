@@ -32,8 +32,6 @@ function getEmployees() {
             hiddentUpdate+="</form>";
             items += hiddentUpdate;
             });
-
-            //$(".tbodyEmployee").empty();
             $(".tbodyEmployee").append(items);
     });
 
