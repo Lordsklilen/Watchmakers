@@ -32,4 +32,7 @@ body {
   padding-top: 50px;
   padding-bottom: 200px;
 }
+.centerElements{
+  margin: 0px auto;
+}
 .pass_show .ptxt:hover{color: #333333;} 

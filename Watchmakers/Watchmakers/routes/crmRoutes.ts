@@ -28,7 +28,7 @@ export class Routes {
         app.route('/api/employees').get(auth.required,this.employeeController.getEmployees);
         app.route('/api/employee/:employeeId').get(auth.required,this.employeeController.getEmployee);
         app.route('/api/employee/update/:employeeId').put(auth.required,this.employeeController.updateEmployee);
-        app.route('/api/employee/delete/:employeeId').delete(auth.required,this.employeeController.deleteEmployee);
+        app.route('/api/employee/delete/:employeeId').post(auth.required,this.employeeController.deleteEmployee);
         app.route('/api/employee/add').post(auth.required,this.employeeController.addNewEmployee);
         
         app.route('/api/loginCheck').post(this.employeeController.LogInEmployee);
@@ -81,8 +81,8 @@ export class Routes {
         app.route('*/css/shop-homepage.css').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/css/shop-homepage.css'));
         });
-        app.route('*/js/LoginScripts.js').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/js/LoginScripts.js'));
+        app.route('*/js/employeeGetter.js').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/js/employeeGetter.js'));
         });
         app.route('*/vendor/jquery/jquery.min.js').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/vendor/jquery/jquery.min.js'));

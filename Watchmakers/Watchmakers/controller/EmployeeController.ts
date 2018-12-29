@@ -39,13 +39,13 @@ export class EmployeeController {
     public LogInEmployee(req: Request, res: Response) {   
         Employee.find({ login: req.body.Login}, (err, employee) => {    
             if (err) {
-                res.redirect('/Login');
+                res.redirect('/login');
             }
             let emp = employee[0];   
             if(emp && emp.validatePassword(req.body.Password)){
                 req["session"].Authorization = employee[0].toAuthJSON()["token"];
                 console.log("logged");
-                res.redirect('/Admin');
+                res.redirect('/admin');
             }
             else{
                 console.log("sth goes wrong");
@@ -83,7 +83,7 @@ export class EmployeeController {
             if (err) {
                 res.send(err);
             }
-            res.json({ message: 'Succesfully deleted employee!' });
+            res.redirect("/employeeManagement");
         });
     }
 }
