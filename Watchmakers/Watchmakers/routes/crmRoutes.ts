@@ -27,7 +27,7 @@ export class Routes {
         //api
         app.route('/api/employees').get(auth.required,this.employeeController.getEmployees);
         app.route('/api/employee/:employeeId').get(auth.required,this.employeeController.getEmployee);
-        app.route('/api/employee/update/:employeeId').put(auth.required,this.employeeController.updateEmployee);
+        app.route('/api/employee/update/:employeeId').post(auth.required,this.employeeController.updateEmployee);
         app.route('/api/employee/delete/:employeeId').post(auth.required,this.employeeController.deleteEmployee);
         app.route('/api/employee/add').post(auth.required,this.employeeController.addNewEmployee);
         

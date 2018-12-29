@@ -13,6 +13,32 @@ body {
     padding-top: 56px;
   }
 }
+
+.tbodyEmployee{
+  display:table-row;
+}
+DIV.table 
+{
+    display:table;
+    border: 1px solid #ddd;
+    text-align: left;
+    border-collapse: collapse;
+}
+FORM.tr, DIV.tr
+{
+    display:table-row;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 5px;
+}
+SPAN.td
+{
+    display:table-cell;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 5px;
+    max-width: 130px;
+}
 .pass_show{
   position: relative;
 } 
@@ -36,3 +62,6 @@ body {
   margin: 0px auto;
 }
 .pass_show .ptxt:hover{color: #333333;} 
+FORM.hidden{
+  display: none;
+}

@@ -74,7 +74,7 @@ export class EmployeeController {
             if (err) {
                 res.send(err);
             }
-            res.json(employee.toAuthJSON());
+            res.redirect("/employeeManagement");
         });
     }
 
