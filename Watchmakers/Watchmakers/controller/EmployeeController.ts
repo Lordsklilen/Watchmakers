@@ -40,10 +40,10 @@ export class EmployeeController {
     public LogInEmployee(req: Request, res: Response) {   
         Employee.find({ login: req.body.Login}, (err, employee) => {    
             if (err) {
-                res.send(err);
+                res.redirect('/Login');
             }
             let emp = employee[0];   
-            if(emp.validatePassword(req.body.Password)){
+            if(emp && emp.validatePassword(req.body.Password)){
                 req["session"].Authorization = employee[0].toAuthJSON()["token"];
                 console.log("logged");
                 res.redirect('/Admin');

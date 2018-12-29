@@ -28,7 +28,7 @@ export class ProductController {
         let newProduct = new Product({
             manufacturer: req.body["Manufacturer"],
             model: req.body["Model"],
-            photo: req.file["filename"]
+            photo: req["file"]["filename"]
         });
         newProduct.save()
             .then(() => res.json(newProduct));
