@@ -34,7 +34,6 @@ export class EmployeeController {
                 res.send(err);
             }
             res.json(employee.toAuthJSON());
-            res.redirect("/Admin");
         });
     }
     public LogInEmployee(req: Request, res: Response) {   
@@ -67,7 +66,7 @@ export class EmployeeController {
         let newEmployee = new Employee(req.body);
         newEmployee.setPassword(req.body["password"]);
         newEmployee.save()
-            .then(() => res.json(newEmployee.toAuthJSON()));
+            .then(() => res.redirect("/employeeManagement"));
        }
 
     public updateEmployee(req: Request, res: Response) {

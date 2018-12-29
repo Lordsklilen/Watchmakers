@@ -25,24 +25,24 @@ export class Routes {
         });
 
         //api
-        app.route('/api/employees').get(this.employeeController.getEmployees);
-        app.route('/api/employee/:employeeId').get(this.employeeController.getEmployee);
-        app.route('/api/employee/update/:employeeId').put(this.employeeController.updateEmployee);
-        app.route('/api/employee/delete/:employeeId').delete(this.employeeController.deleteEmployee);
-        app.route('/api/employee/add').post(this.employeeController.addNewEmployee);
+        app.route('/api/employees').get(auth.required,this.employeeController.getEmployees);
+        app.route('/api/employee/:employeeId').get(auth.required,this.employeeController.getEmployee);
+        app.route('/api/employee/update/:employeeId').put(auth.required,this.employeeController.updateEmployee);
+        app.route('/api/employee/delete/:employeeId').delete(auth.required,this.employeeController.deleteEmployee);
+        app.route('/api/employee/add').post(auth.required,this.employeeController.addNewEmployee);
         
         app.route('/api/loginCheck').post(this.employeeController.LogInEmployee);
-        app.route('/api/logOut').post(this.employeeController.LogOutEmployee);
+        app.route('/api/logOut').post(auth.required,this.employeeController.LogOutEmployee);
 
         app.route('/api/products').get(this.productController.getProducts);
         app.route('/api/product/:productId').get(this.productController.getProduct);
-        app.route('/api/product/update/:productId').put(this.productController.updateProduct);
-        app.route('/api/product/delete/:productId').delete(this.productController.deleteProduct);
-        app.route('/api/product/add').post(upload.single('photo'), this.productController.addProduct);
+        app.route('/api/product/update/:productId').put(auth.required,this.productController.updateProduct);
+        app.route('/api/product/delete/:productId').delete(auth.required,this.productController.deleteProduct);
+        app.route('/api/product/add').post(auth.required,upload.single('photo'), this.productController.addProduct);
 
         app.route('/api/services').get(this.serviceController.getServices);
         app.route('/api/service/:serviceId').get(this.serviceController.getService);
-        app.route('/api/service/add').post(this.serviceController.addService);
+        app.route('/api/service/add').post(auth.required,this.serviceController.addService);
 
         app.route('/api/orders').get(this.orderController.getOrders);
         app.route('/api/order/:orderId').get(this.orderController.getOrder);
@@ -55,17 +55,23 @@ export class Routes {
         app.route('/').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/index.html'));
         });
-        app.route('/Login').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/Login.html'));
+        app.route('/error').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/errorPage.html'));
         });
-        app.route('/Admin').get(auth.required,(req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/Admin.html'));
+        app.route('/login').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/login.html'));
         });
-        app.route('/Item/:itemname').get((req: Request, res: Response) => {
+        app.route('/admin').get(auth.required,(req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/admin.html'));
+        });
+        app.route('/item/:itemname').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/item.html'));
         });
-        app.route('/addproduct').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/addproduct.html'));
+        app.route('/productManagement').get(auth.required,(req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/productManagement.html'));
+        });
+        app.route('/employeeManagement').get(auth.required,(req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/employeeManagement.html'));
         });
         app.route('/products').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/products.html'));
