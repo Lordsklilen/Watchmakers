@@ -17,6 +17,8 @@ class Server {
         this.config();
         this.routePrv.routes(this.app);
         this.mongoSetup();
+        this.app.use(express.static(path.join(__dirname, '../public')));
+        console.log(path.join(__dirname, '../public'))
     }
 
     private config(): void {
