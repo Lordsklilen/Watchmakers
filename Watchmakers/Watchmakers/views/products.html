@@ -16,8 +16,9 @@
                 $.get(Url, function(data, status){
                     for(var i = 0; i < data.length; i++){
                         console.log(data[i]);
-                        var $manufacturer = $("<h6>").text(data[i]["manufacturer"]);
-                        var $model = $("<p>").text(data[i]["model"]);
+                        var $manufacturer = $("<h3>").text(data[i]["manufacturer"]);
+                        var $model = $("<h4>").text(data[i]["model"]);
+                        var $description = $("<p>").text(data[i]["description"]);
                         var $photo = $("<img>", {"src": "upload/" + data[i]["photo"]});
 
                         var $div = $("<div>", {"class": "product"});

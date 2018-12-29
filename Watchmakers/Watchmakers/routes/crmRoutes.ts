@@ -67,9 +67,6 @@ export class Routes {
         app.route('/addproduct').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/addproduct.html'));
         });
-        app.route('/products').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/products.html'));
-        });
 
         // loading css and js/jquery files
         app.route('*/vendor/bootstrap/css/bootstrap.min.css').get((req: Request, res: Response) => {
