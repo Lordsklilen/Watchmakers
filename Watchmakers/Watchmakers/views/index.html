@@ -134,13 +134,9 @@
             $title = $("<h4>", {
               "class": "card-title"
             }).text(data[i]["manufacturer"] + " " + data[i]["model"]);
-            $price = $("<h5>").text(data[i]["price"]);
-            $description = $("<p>", {
-              "class": "card-text"
-            }).text(data[i]["description"]);
+            $price = $("<h5>").text(data[i]["price"] + "zł");
             $body.append($title);
             $body.append($price);
-            $body.append($description);
             $card.append($img);
             $card.append($body);
             $div.append($card);

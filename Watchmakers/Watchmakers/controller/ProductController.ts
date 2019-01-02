@@ -25,10 +25,11 @@ export class ProductController {
     }
 
     public addProduct(req: Request, res: Response) {
-        console.log(req);
         let newProduct = new Product({
             manufacturer: req.body["Manufacturer"],
             model: req.body["Model"],
+            price: req.body["Price"],
+            description: req.body["Description"],
             photo: req["file"]["filename"]
         });
         newProduct.save()

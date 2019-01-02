@@ -5,6 +5,7 @@ export const ProductSchema = new Schema({
     manufacturer: String,
     model: String,
     description: String,
+    price: Number,
     photo: String
 });
 
