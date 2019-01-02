@@ -73,6 +73,12 @@ export class Routes {
         app.route('/employeeManagement').get(auth.required,(req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/employeeManagement.html'));
         });
+        app.route('/product/:id').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/product.html'));
+        });
+        app.route('/order/:id').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/order.html'));
+        });
 
         // loading css and js/jquery files
         app.route('*/vendor/bootstrap/css/bootstrap.min.css').get((req: Request, res: Response) => {

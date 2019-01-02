@@ -25,7 +25,13 @@ export class OrderController {
     }
 
     public addOrder(req: Request, res: Response) {
-        let newOrder = new Order(req.body);
+        let newOrder = new Order({
+            productId: req.body["productId"],
+            status: 0,
+            name: req.body["name"],
+            surname: req.body["surname"],
+            phone: req.body["phone"]
+        });
         newOrder.save()
             .then(() => res.json(newOrder));
     }

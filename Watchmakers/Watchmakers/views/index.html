@@ -117,7 +117,7 @@
       $(document).ready(function(){
         const Url = "/api/products";
         $.get(Url, function(data, status){
-          for(var i = 0; i < data.length; i++){
+          for(let i = 0; i < data.length; i++){
             $div = $("<div>", {
               "class": "col-lg-4 col-md-6 mb-4"
             });
@@ -125,7 +125,7 @@
               "class": "card h-100"
             });
             $img = $("<img>", {
-              "src": "upload/" + data[i]["photo"],
+              "src": "/upload/" + data[i]["photo"],
               "class": "card-img-top"
             });
             $body = $("<div>", {
@@ -140,6 +140,9 @@
             $card.append($img);
             $card.append($body);
             $div.append($card);
+            $div.on("click", function(){
+              window.location.replace("/product/" + data[i]["_id"]);
+            });
             $("#product-container").append($div);
           }
         })
