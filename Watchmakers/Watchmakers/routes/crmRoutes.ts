@@ -55,6 +55,7 @@ export class Routes {
         app.route('/').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/index.html'));
         });
+        
         app.route('/error').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/errorPage.html'));
         });
@@ -73,6 +74,9 @@ export class Routes {
         app.route('/employeeManagement').get(auth.required,(req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/employeeManagement.html'));
         });
+        app.route('/orderManagement').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/orderManagement.html'));
+        });
         app.route('/product/:id').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/product.html'));
         });
@@ -89,6 +93,9 @@ export class Routes {
         });
         app.route('*/js/employeeGetter.js').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/js/employeeGetter.js'));
+        }); 
+        app.route('*/js/orderGetter.js').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/js/orderGetter.js'));
         });
         app.route('*/vendor/jquery/jquery.min.js').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/vendor/jquery/jquery.min.js'));

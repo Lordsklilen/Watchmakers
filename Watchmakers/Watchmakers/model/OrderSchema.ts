@@ -8,5 +8,9 @@ export const OrderSchema = new Schema({
     surname: String,
     phone: String
 });
-
+export enum OrderStatus{
+    PENDING_APPROVAL,
+    APPROVED,
+    CANCELED
+}
 mongoose.model('Order', OrderSchema);

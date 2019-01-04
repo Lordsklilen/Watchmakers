@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { OrderSchema } from "../model/OrderSchema";
+import { OrderSchema, OrderStatus } from "../model/OrderSchema";
 import { Request, Response } from 'express';
 
 const Order = mongoose.model('Order', OrderSchema);
@@ -27,7 +27,7 @@ export class OrderController {
     public addOrder(req: Request, res: Response) {
         let newOrder = new Order({
             productId: req.body["productId"],
-            status: 0,
+            status: OrderStatus[OrderStatus.PENDING_APPROVAL],
             name: req.body["name"],
             surname: req.body["surname"],
             phone: req.body["phone"]
