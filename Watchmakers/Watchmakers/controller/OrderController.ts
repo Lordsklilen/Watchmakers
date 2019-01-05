@@ -33,7 +33,9 @@ export class OrderController {
             phone: req.body["phone"]
         });
         newOrder.save()
-            .then(() => res.json(newOrder));
+            .then(() => {
+                res.redirect('/order/status/' + newOrder["_id"]);
+            });
     }
 
     public updateOrder(req: Request, res: Response) {

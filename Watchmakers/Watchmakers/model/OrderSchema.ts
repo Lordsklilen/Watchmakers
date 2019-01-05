@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 export const OrderSchema = new Schema({
     productId: String,
-    status: Number,
+    status: {
+        type: String,
+        enum: OrderStatus
+    },
     name: String,
     surname: String,
     phone: String
