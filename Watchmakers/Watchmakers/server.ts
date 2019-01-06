@@ -18,20 +18,12 @@ class Server {
         this.routePrv.routes(this.app);
         this.mongoSetup();
         this.app.use(express.static(path.join(__dirname, '../public')));
-        console.log(path.join(__dirname, '../public'))
     }
 
     private config(): void {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use('/', express.static('html'));
-        this.app.use((err, req, res, next) => {
-            if(err.name === 'UnauthorizedError') {
-              res.status(err.status).send({message:"dsdf"});
-              return;
-            }
-         next();
-        });
         this.app.use(cookieParser());
         this.app.use(session({
             Authorization:"Nie dla psa! dla pana to",

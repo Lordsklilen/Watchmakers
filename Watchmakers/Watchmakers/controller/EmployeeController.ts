@@ -44,11 +44,11 @@ export class EmployeeController {
             let emp = employee[0];   
             if(emp && emp.validatePassword(req.body.Password)){
                 req["session"].Authorization = employee[0].toAuthJSON()["token"];
-                console.log("logged");
                 res.redirect('/admin');
             }
             else{
-                console.log("sth goes wrong");
+                //console.log("sth goes wrong");
+                res.redirect('/login');
             }
         });
     }

@@ -51,7 +51,7 @@ export class Routes {
 
         app.route('/api/order/delete/:orderId').post(auth.required,this.orderController.deleteOrder);
         app.route('/api/order/approve/:orderId').post(auth.required,this.orderController.approveOrder);
-        app.route('/api/order/cancel/:orderId').post(auth.required,this.orderController.calncelOrder);
+        app.route('/api/order/cancel/:orderId').post(auth.required,this.orderController.cancelOrder);
         app.route('/api/order/complete/:orderId').post(auth.required,this.orderController.completedOrder);
         app.route('/api/order/ready/:orderId').post(auth.required,this.orderController.readyOrder);
       

@@ -83,20 +83,6 @@ export class OrderController {
             });
         });
     }
-    public calncelOrder(req: Request, res: Response) {
-        Order.findById(req.params.orderId, (err, order) => {
-            if (err) {
-                res.send(err);
-            }
-            order.status = OrderStatus[OrderStatus.CANCELED];
-            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
-                if (err) {
-                    res.send(err);
-                }
-                res.redirect('/orderManagement');
-            });
-        });
-    }
     public completedOrder(req: Request, res: Response) {
         Order.findById(req.params.orderId, (err, order) => {
             if (err) {
