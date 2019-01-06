@@ -42,11 +42,19 @@ export class Routes {
 
         app.route('/api/services').get(this.serviceController.getServices);
         app.route('/api/service/:serviceId').get(this.serviceController.getService);
-        app.route('/api/service/add').post(auth.required,this.serviceController.addService);
+        app.route('/api/service/add').post(this.serviceController.addService);
 
         app.route('/api/orders').get(this.orderController.getOrders);
         app.route('/api/order/:orderId').get(this.orderController.getOrder);
         app.route('/api/order/add').post(this.orderController.addOrder);
+        app.route('/api/order/update/:orderId').post(auth.required,this.orderController.updateOrder);
+
+        app.route('/api/order/delete/:orderId').post(auth.required,this.orderController.deleteOrder);
+        app.route('/api/order/approve/:orderId').post(auth.required,this.orderController.approveOrder);
+        app.route('/api/order/cancel/:orderId').post(auth.required,this.orderController.calncelOrder);
+        app.route('/api/order/complete/:orderId').post(auth.required,this.orderController.completedOrder);
+        app.route('/api/order/ready/:orderId').post(auth.required,this.orderController.readyOrder);
+      
 
 
         
@@ -74,17 +82,17 @@ export class Routes {
         app.route('/employeeManagement').get(auth.required,(req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/employeeManagement.html'));
         });
-        app.route('/orderManagement').get((req: Request, res: Response) => {
+        app.route('/orderManagement').get(auth.required,(req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/orderManagement.html'));
         });
         app.route('/product/:id').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/product.html'));
         });
-        app.route('/order/:id').get((req: Request, res: Response) => {
-            res.sendFile(path.resolve(__dirname + '/../../views/order.html'));
-        });
         app.route('/order/status/:id').get((req: Request, res: Response) => {
             res.sendFile(path.resolve(__dirname + '/../../views/orderStatus.html'));
+        });
+        app.route('/order/:id').get((req: Request, res: Response) => {
+            res.sendFile(path.resolve(__dirname + '/../../views/order.html'));
         });
 
         // loading css and js/jquery files

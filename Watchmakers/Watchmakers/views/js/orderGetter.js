@@ -15,18 +15,22 @@ function getOrders() {
                   id = val;
                   items+= "<div class='tr' id='StaticFields" + id + "'>";
                 }
-                items += "<span class='td'>" + val + "</span>";
-             // items+= "<span class='td'><input type='text' value='"+val+"' name='"+key+"' class='form-control' placeholder='"+ key + "'></span>"
+                if(key!= "__v")
+                  items += "<span class='td'>" + val + "</span>";
              
             });
 
-          items += "<span class='td'><button type='button' class='btn btn-warning' onclick='ShowHidden(\""+id+"\")'>Edit order</button></span></div>";
+          items += "<span class='td'><button type='button' class='btn btn-warning' onclick='ShowHidden(\""+id+"\")'>Edit</button></span></div>";
 
           hiddentUpdate += "<div class='tr hidden' id='HiddenFields" + id + "'>";
-          hiddentUpdate += "<span class='td'> <form action='/api/order/approve/"+ id +"' method='post'><button type='submit' class='btn btn-success'>Approve Order</button></form></span>";
 
-          hiddentUpdate += "<span class='td'><form action='/api/order/delete/"+id+"' method='post'><button type='submit' class='btn btn-danger'>Delete order</button></form></span>";
-          hiddentUpdate += "<span class='td'><button type='button' class='btn btn-light' onclick='Hide(\""+id+"\")'>Cancel</button></span></div>";
+          hiddentUpdate += "<span class='td'> <form action='/api/order/approve/"+ id +"' method='post'><button type='submit' class='btn btn-success'>Approve</button></form></span>";
+          hiddentUpdate += "<span class='td'> <form action='/api/order/ready/"+ id +"' method='post'><button type='submit' class='btn btn-success'>Ready</button></form></span>";
+          hiddentUpdate += "<span class='td'> <form action='/api/order/complete/"+ id +"' method='post'><button type='submit' class='btn btn-success'>Complete</button></form></span>";
+          hiddentUpdate += "<span class='td'> <form action='/api/order/cancel/"+ id +"' method='post'><button type='submit' class='btn btn-warning'>Cancel</button></form></span>";
+
+          hiddentUpdate += "<span class='td'><form action='/api/order/delete/"+id+"' method='post'><button type='submit' class='btn btn-danger'>Delete</button></form></span>";
+          hiddentUpdate += "<span class='td'><button type='button' class='btn btn-light' onclick='Hide(\""+id+"\")'>Cancel edit</button></span></div>";
           items += hiddentUpdate;
           });
           $(".tbodyEmployee").append(items);

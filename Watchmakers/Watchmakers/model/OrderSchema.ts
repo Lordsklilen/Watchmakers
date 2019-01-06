@@ -5,15 +5,23 @@ export const OrderSchema = new Schema({
     productId: String,
     status: {
         type: String,
-        enum: OrderStatus
+        enum: ['PENDING_APPROVAL',
+            'APPROVED',
+            'CANCELED',
+            'READY_IN_SHOP',
+            'COMPLETED']
     },
     name: String,
     surname: String,
     phone: String
 });
+
 export enum OrderStatus{
     PENDING_APPROVAL,
     APPROVED,
-    CANCELED
+    CANCELED,
+    READY_IN_SHOP,
+    COMPLETED
 }
+
 mongoose.model('Order', OrderSchema);

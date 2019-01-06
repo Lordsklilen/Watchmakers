@@ -14,7 +14,7 @@ function getEmployees() {
                 if(id==""){
                   id = val;
                   items+= "<div class='tr' id='StaticFields" + id + "'>";
-                  hiddentUpdate+= "<form class='tr hidden' action='/api/employee/delete/"+id+"' method='post' id='HiddenFields" + id + "'>";
+                  hiddentUpdate+= "<form class='tr hidden' action='/api/employee/update/"+id+"' method='post' id='HiddenFields" + id + "'>";
                 }
               items += "<span class='td'>" + val + "</span>";
               if(key!="password")

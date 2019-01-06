@@ -43,16 +43,86 @@ export class OrderController {
             if (err) {
                 res.send(err);
             }
-            res.json(order);
+            res.redirect('/orderManagement');
         });
     }
 
     public deleteOrder(req: Request, res: Response) {
-        Order.remove({ _id: req.params.productId }, (err, order) => {
+        Order.remove({ _id: req.params.orderId }, (err, order) => {
             if (err) {
                 res.send(err);
             }
-            res.json({ message: 'Succesfully deleted product!' });
+            res.redirect('/orderManagement');
+        });
+    }
+    public approveOrder(req: Request, res: Response) {
+        Order.findById(req.params.orderId, (err, order) => {
+            if (err) {
+                res.send(err);
+            }
+            order.status = OrderStatus[OrderStatus.APPROVED];
+            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect('/orderManagement');
+            });
+        });
+    }
+    public cancelOrder(req: Request, res: Response) {
+        Order.findById(req.params.orderId, (err, order) => {
+            if (err) {
+                res.send(err);
+            }
+            order.status = OrderStatus[OrderStatus.CANCELED];
+            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect('/orderManagement');
+            });
+        });
+    }
+    public calncelOrder(req: Request, res: Response) {
+        Order.findById(req.params.orderId, (err, order) => {
+            if (err) {
+                res.send(err);
+            }
+            order.status = OrderStatus[OrderStatus.CANCELED];
+            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect('/orderManagement');
+            });
+        });
+    }
+    public completedOrder(req: Request, res: Response) {
+        Order.findById(req.params.orderId, (err, order) => {
+            if (err) {
+                res.send(err);
+            }
+            order.status = OrderStatus[OrderStatus.COMPLETED];
+            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect('/orderManagement');
+            });
+        });
+    }
+    public readyOrder(req: Request, res: Response) {
+        Order.findById(req.params.orderId, (err, order) => {
+            if (err) {
+                res.send(err);
+            }
+            order.status = OrderStatus[OrderStatus.READY_IN_SHOP];
+            Order.findOneAndUpdate({ _id: req.params.orderId }, order, { new: true }, (err, order) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect('/orderManagement');
+            });
         });
     }
 }
